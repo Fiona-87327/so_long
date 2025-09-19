@@ -1,6 +1,6 @@
 
-NAME = pipex
-SRCS = src/pipex.c src/pipex_util.c src/pipex_util1.c
+NAME = so_long
+SRCS = src/so_long.c src/.c src/.c
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 OBJS = $(SRCS:.c=.o)
