@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 09:23:24 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 02:44:06 by jiyawang         ###   ########.fr       */
+/*   Created: 2025/09/21 13:27:44 by jiyawang          #+#    #+#             */
+/*   Updated: 2025/09/21 13:28:21 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nUsage: ./so_long map.ber\n");
 		return (1);
 	}
-	if (!parse_map(argv[1], &game))
-		return (1);
-	if (!init_mlx(&game))
+	if (!init_game(&game, argv[1]))
 		return (1);
 	mlx_loop(game.mlx);
-	free_game(&game);
+	cleanup_game(&game);
 	return (0);
 }

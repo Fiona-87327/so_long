@@ -3,62 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyan <jiyan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 02:32:18 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 02:48:11 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/21 09:56:04 by jiyan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include "libft.h"
-#include "mlx.h"
+# include <MLX42/MLX42.h>
+# include <libft.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#define TILE_SIZE 32
+# define TILE_SIZE 32
 
-// 地图结构体
-typedef struct s_map {
-    char    **grid;      // 二维地图数组（每行一个字符串）
-    int     rows;        // 行数
-    int     cols;        // 列数
-    int     n_player;    // 玩家个数
-    int     n_exit;      // 出口个数
-    int     n_collect;   // 收集物个数
-}   t_map;
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
 
-// 游戏主数据结构
-typedef struct s_game {
-    void    *mlx;       // MLX 指针
-    void    *win;       // 窗口指针
-    t_map   *map;       // 地图指针
-    int     player_x;   // 玩家当前横坐标
-    int     player_y;   // 玩家当前纵坐标
-    int     move_count; // 移动次数
-    int     collected;  // 收集物已获得数量
-    // 图片资源（可根据实际扩展）
-    void    *img_wall;
-    void    *img_floor;
-    void    *img_player;
-    void    *img_collect;
-    void    *img_exit;
-}   t_game;
+# define WALL '1'
+# define FLOOR '0'
+# define PLAYER 'P'
+# define COLLECTIBLE 'C'
+# define EXIT 'E'
 
-// 解析地图
-t_map   *parse_map(const char *filename);
-// 释放地图内存
-void    free_map_grid(char **grid, int rows);
-// 初始化游戏和窗口
-int     init_mlx(t_game *game);
-// 主游戏循环、事件处理
-int     handle_keypress(int keycode, t_game *game);
-// 错误输出
-void    error_exit(const char *msg);
-// 其他工具函数可自行扩展
+typedef struct s_map
+{
+	char		**grid;
+	int			rows;
+	int			cols;
+	int			n_player;
+	int			n_exit;
+	int			n_collect;
+}				t_map;
+
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	t_map		*map;
+	int			player_x;
+	int			player_y;
+	int			move_count;
+	int			collected;
+	mlx_image_t	*img_wall;
+	mlx_image_t	*img_floor;
+	mlx_image_t	*img_player;
+	mlx_image_t	*img_collect;
+	mlx_image_t	*img_exit;
+}				t_game;
+
+t_map			*parse_map(const char *filename);
+int				validate_map(t_map *map);
+void			free_map(t_map *map);
+int				init_game(t_game *game, const char *map_file);
+int				load_textures(t_game *game);
+void			render_game(t_game *game);
+void			key_handler(mlx_key_data_t keydata, void *param);
+int				move_player(t_game *game, int new_x, int new_y);
+void			cleanup_game(t_game *game);
+void			error_exit(const char *msg);
 
 #endif
