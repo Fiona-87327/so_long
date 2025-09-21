@@ -1,1 +1,60 @@
-.vscode
+# IDE und Editor Dateien
+.vscode/
+.DS_Store
+*~
+*.swp
+*.swo
+
+# Kompilierte Dateien
+*.o
+*.a
+*.so
+*.dylib
+
+# Executable
+so_long
+
+# Debug Dateien
+*.dSYM/
+*.gch
+*.pch
+
+# Temporäre Dateien
+.tmp/
+tmp/
+*.tmp
+
+# Log Dateien
+*.log
+
+# Backup Dateien
+*.bak
+*.backup
+
+# System Dateien (macOS)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# System Dateien (Linux)
+.directory
+.Trash-*
+
+# MLX temporäre Dateien
+mlx_*.o
+
+# Test Dateien (optional, je nach Bedarf)
+test_*
+*.test
+
+# Memory leak check Dateien
+valgrind-out.txt
+*.valgrind
+
+# 42 Schule spezifisch
+*.42
+a.out
+
+# Minilibx Build Dateien (falls lokal kompiliert)
+minilibx/
+mlx/
