@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyan <jiyan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:27:30 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 13:30:11 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/21 16:54:28 by jiyan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check_file_extension(const char *filename)
 {
 	int	len;
-	
+
 	len = ft_strlen(filename);
 	if (len < 5)
 		return (0);
@@ -28,20 +28,18 @@ static char	*read_file_content(const char *filename)
 	char	*line;
 	char	*content;
 	char	*temp;
-	
+
 	if (!check_file_extension(filename))
 	{
 		error_exit("Invalid file extension. Must be .ber");
 		return (NULL);
 	}
-	
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		error_exit("Cannot open map file");
 		return (NULL);
 	}
-	
 	content = ft_strdup("");
 	while ((line = get_next_line(fd)) != NULL)
 	{
@@ -60,7 +58,8 @@ t_map	*parse_map(const char *filename)
 	char	*content;
 	char	**lines;
 	int		i;
-	
+	int		j;
+
 	content = read_file_content(filename);
 	if (!content)
 		return (NULL);
@@ -82,7 +81,6 @@ t_map	*parse_map(const char *filename)
 	map->rows = 0;
 	while (lines[map->rows])
 		map->rows++;
-	
 	if (map->rows == 0)
 	{
 		free(lines);
@@ -90,7 +88,6 @@ t_map	*parse_map(const char *filename)
 		error_exit("Empty map file");
 		return (NULL);
 	}
-	
 	map->cols = ft_strlen(lines[0]);
 	map->grid = lines;
 	map->n_player = 0;
@@ -99,7 +96,7 @@ t_map	*parse_map(const char *filename)
 	i = 0;
 	while (i < map->rows)
 	{
-		int j = 0;
+		j = 0;
 		while (j < map->cols)
 		{
 			if (map->grid[i][j] == PLAYER)
@@ -112,14 +109,14 @@ t_map	*parse_map(const char *filename)
 		}
 		i++;
 	}
-	
 	return (map);
 }
 
 int	validate_map(t_map *map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
 	while (i < map->rows)
@@ -141,7 +138,6 @@ int	validate_map(t_map *map)
 		}
 		i++;
 	}
-	
 	i = 0;
 	while (i < map->rows)
 	{
@@ -158,9 +154,9 @@ int	validate_map(t_map *map)
 		j = 0;
 		while (j < map->cols)
 		{
-			char c = map->grid[i][j];
-			if (c != WALL && c != FLOOR && c != PLAYER && 
-				c != COLLECTIBLE && c != EXIT)
+			c = map->grid[i][j];
+			if (c != WALL && c != FLOOR && c != PLAYER && c != COLLECTIBLE
+				&& c != EXIT)
 			{
 				error_exit("Invalid character in map");
 				return (0);
@@ -174,29 +170,25 @@ int	validate_map(t_map *map)
 		error_exit("Map must have exactly one player");
 		return (0);
 	}
-	
 	if (map->n_exit != 1)
 	{
 		error_exit("Map must have exactly one exit");
 		return (0);
 	}
-	
 	if (map->n_collect < 1)
 	{
 		error_exit("Map must have at least one collectible");
 		return (0);
 	}
-	
 	return (1);
 }
 
 void	free_map(t_map *map)
 {
 	int	i;
-	
+
 	if (!map)
-		return;
-	
+		return ;
 	if (map->grid)
 	{
 		i = 0;
@@ -207,6 +199,5 @@ void	free_map(t_map *map)
 		}
 		free(map->grid);
 	}
-	
 	free(map);
 }

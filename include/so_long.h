@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyan <jiyan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:55:19 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 13:55:22 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/21 16:22:00 by jiyan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 # include <MLX42/MLX42.h>
-# include <libft.h>
 # include <fcntl.h>
+# include <libft.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -52,9 +52,11 @@ typedef struct s_game
 	int			player_y;
 	int			move_count;
 	int			collected;
+	int			player_dir;
 	mlx_image_t	*img_wall;
 	mlx_image_t	*img_floor;
-	mlx_image_t	*img_player;
+	mlx_image_t	*img_player_r;
+	mlx_image_t	*img_player_l;
 	mlx_image_t	*img_collect;
 	mlx_image_t	*img_exit;
 }				t_game;
