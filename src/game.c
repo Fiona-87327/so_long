@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 09:23:24 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 02:44:06 by jiyawang         ###   ########.fr       */
+/*   Created: 2025/09/21 02:46:03 by jiyawang          #+#    #+#             */
+/*   Updated: 2025/09/21 02:46:09 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int handle_keypress(int keycode, t_game *game)
 {
-	t_game	game;
+    // W/A/S/D 对应移动
+    // 检查能否移动，不能则不变
+    // 移动后计数+1，ft_printf打印步数
+    // 收集C、到达E则胜利，退出
+    return (0);
+}
 
-	if (argc != 2)
-	{
-		ft_printf("Error\nUsage: ./so_long map.ber\n");
-		return (1);
-	}
-	if (!parse_map(argv[1], &game))
-		return (1);
-	if (!init_mlx(&game))
-		return (1);
-	mlx_loop(game.mlx);
-	free_game(&game);
-	return (0);
+int init_mlx(t_game *game)
+{
+    // 初始化mlx，创建窗口，加载贴图
+    // 注册键盘事件
+    // 注册关闭窗口事件
+    return (1);
 }

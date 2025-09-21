@@ -1,31 +1,29 @@
-
 NAME = so_long
-SRCS = src/so_long.c src/.c src/.c
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-OBJS = $(SRCS:.c=.o)
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -lmlx -lm -lXext -lX11  # Linux，如果是 macOS，换成 -lmlx -framework OpenGL -framework AppKit
 
-all: $(LIBFT) $(NAME)
+SRCS = so_long.c map.c game.c mlx_utils.c
+OBJS = $(SRCS:.c=.o)
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+LIBFT = libft/libft.a
+LIBFT_INC = -Ilibft
+
+all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
-src/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C libft
 
 clean:
 	rm -f $(OBJS)
-	make -C $(LIBFT_DIR) clean
+	$(MAKE) -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	$(MAKE) -C libft fclean
 
 re: fclean all
 

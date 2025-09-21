@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 09:23:24 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/21 02:44:06 by jiyawang         ###   ########.fr       */
+/*   Created: 2025/09/21 02:45:15 by jiyawang          #+#    #+#             */
+/*   Updated: 2025/09/21 02:45:27 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+// 返回0表示错误，1表示正确
+int parse_map(const char *filename, t_game *game)
 {
-	t_game	game;
-
-	if (argc != 2)
-	{
-		ft_printf("Error\nUsage: ./so_long map.ber\n");
-		return (1);
-	}
-	if (!parse_map(argv[1], &game))
-		return (1);
-	if (!init_mlx(&game))
-		return (1);
-	mlx_loop(game.mlx);
-	free_game(&game);
-	return (0);
+    // 1. 读取文件
+    // 2. 按行分割
+    // 3. 检查合法性（行数、列数、字符、边界、唯一性、可达性）
+    // 4. 填充game->map等结构
+    // 5. 错误时打印Error信息
+    // ...具体实现可补充
+    return 1;
 }
