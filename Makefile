@@ -16,7 +16,7 @@ INCLUDES = -I./include -I$(MLX42_DIR)/include -I$(LIBFT_DIR)
 
 # 源文件
 SRCS_DIR = src
-SRCS = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map.c $(SRCS_DIR)/game.c
+SRCS = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map.c $(SRCS_DIR)/game.c $(SRCS_DIR)/render.c $(SRCS_DIR)/util.c $(SRCS_DIR)/check.c
 OBJS = $(SRCS:.c=.o)
 
 all: deps $(NAME)
