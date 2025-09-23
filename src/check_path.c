@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:28:25 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 20:32:52 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 21:19:27 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	check_path(t_map *map)
 	{
 		visited[i] = malloc(sizeof(int) * map->cols);
 		if (!visited[i])
-		return (ft_free_visited(visited, i), 0);
+			return (ft_free_visited(visited, i), 0);
 		ft_memset(visited[i], 0, sizeof(int) * map->cols);
 		i++;
 	}
