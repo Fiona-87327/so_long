@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 09:48:43 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 12:26:13 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:01:40 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,28 @@ static int	check_element_counts(t_map *map)
 	return (1);
 }
 
+static int	check_map_if_rectangle(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->rows)
+	{
+		if ((int)ft_strlen(map->grid[i]) != map->cols)
+		{
+			error_exit("Map is not rectangular");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	validate_map(t_map *map)
 {
 	if (!check_valid_chars(map))
+		return (0);
+	if (!check_map_if_rectangle(map))
 		return (0);
 	if (!check_element_counts(map))
 		return (0);

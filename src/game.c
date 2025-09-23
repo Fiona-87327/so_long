@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 22:18:29 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/22 09:59:46 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:57:20 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,21 @@ static int	init_images(t_game *game, mlx_texture_t **tex, mlx_image_t **img,
 
 int	load_textures(t_game *game)
 {
-	mlx_texture_t	*tex;
+    mlx_texture_t	*tex;
 
-	if (!init_images(game, &tex, &game->img_wall, "textures/wall.png"))
-		return (0);
-	if (!init_images(game, &tex, &game->img_floor, "textures/floor.png"))
-		return (0);
-	if (!init_images(game, &tex, &game->img_player_r, "textures/playerr.png"))
-		return (0);
-	if (!init_images(game, &tex, &game->img_player_l, "textures/playerl.png"))
-		return (0);
-	if (!init_images(game, &tex, &game->img_collect,
-			"textures/collectible.png"))
-		return (0);
-	if (!init_images(game, &tex, &game->img_exit, "textures/exit.png"))
-		return (0);
-	return (1);
+    if (!init_images(game, &tex, &game->img_wall, "./textures/wall.png"))
+        return (0);
+    if (!init_images(game, &tex, &game->img_floor, "./textures/floor.png"))
+        return (0);
+    if (!init_images(game, &tex, &game->img_collect, "./textures/collectible.png"))
+        return (0);
+    if (!init_images(game, &tex, &game->img_exit, "./textures/exit.png"))
+        return (0);
+    if (!init_images(game, &tex, &game->img_player_r, "./textures/playerr.png"))
+        return (0);
+    if (!init_images(game, &tex, &game->img_player_l, "./textures/playerl.png"))
+        return (0);
+    return (1);
 }
 
 int	init_game(t_game *game, const char *map_file)

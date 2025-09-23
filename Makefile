@@ -12,7 +12,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 INCLUDES = -I./include -I$(MLX42_DIR)/include -I$(LIBFT_DIR)
 
 SRCS_DIR = src
-SRCS = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map.c $(SRCS_DIR)/game.c $(SRCS_DIR)/render.c $(SRCS_DIR)/key_hand.c $(SRCS_DIR)/check.c $(SRCS_DIR)/free_and_clean.c
+SRCS = $(SRCS_DIR)/so_long.c $(SRCS_DIR)/map.c $(SRCS_DIR)/game.c $(SRCS_DIR)/render.c $(SRCS_DIR)/key_hand.c $(SRCS_DIR)/check_map.c $(SRCS_DIR)/free_and_clean.c $(SRCS_DIR)/check_path.c
 OBJS = $(SRCS:.c=.o)
 
 all: deps $(NAME)

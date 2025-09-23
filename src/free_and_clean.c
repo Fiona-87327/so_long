@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:29:45 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 12:37:47 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 21:14:00 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ void	free_map(t_map *map)
 	if (map->grid)
 	{
 		i = 0;
-		while (i < map->rows)
+		while (i < map->rows && map->grid[i])
 		{
-			if (map->grid[i])
-				i++;
-			else
-				break ;
+			free(map->grid[i]);
+			i++;
 		}
-		while (i >= 0)
-			free(map->grid[i--]);
 		free(map->grid);
 	}
 	free(map);
@@ -53,3 +49,20 @@ void	error_exit(const char *msg)
 	}
 	exit(EXIT_FAILURE);
 }
+
+// int	validate_file_extension(const char *filename)
+// {
+// 	const char	*extension;
+// 	int		len;
+
+// 	len = ft_strlen(filename);
+// 	if (len < 4)
+// 		return (0);
+// 	extension = filename + (len - 4);
+// 	if (ft_strncmp(extension, ".ber", 4) != 0)
+// 	{
+// 		error_exit("Map file must have .ber extension");
+// 		return (0);
+// 	}
+// 	return (1);
+// }

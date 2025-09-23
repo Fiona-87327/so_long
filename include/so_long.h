@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:55:19 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 12:24:28 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 21:02:35 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
-
-// typedef struct s_path
-// {
-// 	int			rows;
-// 	int			cols;
-// 	int			collect_found;
-// 	int			exit_found;
-// 	int			total_collect;
-// }				t_path;
 
 typedef struct s_map
 {
@@ -85,5 +76,8 @@ int				move_player(t_game *game, int new_x, int new_y);
 int				main(int argc, char **argv);
 char			*read_file_content(const char *filename);
 void			count_map_elements(t_map *map);
+void			dfs(t_map *map, int x, int y, int **visited);
+int				check_path(t_map *map);
+int				validate_file_extension(const char *filename);
 
 #endif
