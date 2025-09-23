@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 09:43:29 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/22 10:02:34 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/22 18:58:57 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	render_tile(t_game *game, int x, int y)
 void	render_game(t_game *game)
 {
 	int	y;
-	int x;
-	
+	int	x;
+
 	y = 0;
 	while (y < game->map->rows)
 	{

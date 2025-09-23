@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:55:19 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/22 10:27:58 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 12:24:28 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
+
+// typedef struct s_path
+// {
+// 	int			rows;
+// 	int			cols;
+// 	int			collect_found;
+// 	int			exit_found;
+// 	int			total_collect;
+// }				t_path;
 
 typedef struct s_map
 {
@@ -61,15 +70,20 @@ typedef struct s_game
 	mlx_image_t	*img_exit;
 }				t_game;
 
-t_map			*parse_map(const char *filename);
 int				validate_map(t_map *map);
 void			free_map(t_map *map);
-int				init_game(t_game *game, const char *map_file);
-int				load_textures(t_game *game);
-void			render_game(t_game *game);
-void			key_handler(mlx_key_data_t keydata, void *param);
-int				move_player(t_game *game, int new_x, int new_y);
 void			cleanup_game(t_game *game);
 void			error_exit(const char *msg);
+int				load_textures(t_game *game);
+int				init_game(t_game *game, const char *map_file);
+void			key_handler(mlx_key_data_t keydata, void *param);
+t_map			*parse_map(const char *filename);
+void			render_tile(t_game *game, int x, int y);
+void			render_game(t_game *game);
+void			move_update(t_game *game, int new_x, int new_y);
+int				move_player(t_game *game, int new_x, int new_y);
+int				main(int argc, char **argv);
+char			*read_file_content(const char *filename);
+void			count_map_elements(t_map *map);
 
 #endif

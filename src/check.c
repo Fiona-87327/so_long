@@ -6,38 +6,13 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 09:48:43 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/22 09:58:43 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 12:26:13 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_rect_and_border(t_map *map)
-{
-	int	i;
-
-	for (i = 0; i < map->rows; i++)
-		if ((int)ft_strlen(map->grid[i]) != map->cols)
-		{
-			error_exit("Map is not rectangular");
-			return (0);
-		}
-	for (i = 0; i < map->cols; i++)
-		if (map->grid[0][i] != WALL || map->grid[map->rows - 1][i] != WALL)
-		{
-			error_exit("Map border must be walls");
-			return (0);
-		}
-	for (i = 0; i < map->rows; i++)
-		if (map->grid[i][0] != WALL || map->grid[i][map->cols - 1] != WALL)
-		{
-			error_exit("Map border must be walls");
-			return (0);
-		}
-	return (1);
-}
-
-static int	check_chars_and_counts(t_map *map)
+static int	check_valid_chars(t_map *map)
 {
 	int		i;
 	int		j;
@@ -60,6 +35,11 @@ static int	check_chars_and_counts(t_map *map)
 		}
 		i++;
 	}
+	return (1);
+}
+
+static int	check_element_counts(t_map *map)
+{
 	if (map->n_player != 1)
 	{
 		error_exit("Map must have exactly one player");
@@ -80,9 +60,9 @@ static int	check_chars_and_counts(t_map *map)
 
 int	validate_map(t_map *map)
 {
-	if (!check_rect_and_border(map))
+	if (!check_valid_chars(map))
 		return (0);
-	if (!check_chars_and_counts(map))
+	if (!check_element_counts(map))
 		return (0);
 	return (1);
 }
