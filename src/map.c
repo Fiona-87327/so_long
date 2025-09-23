@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 22:19:03 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 12:45:00 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/23 12:57:30 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ char	*read_file_content(const char *filename)
 {
 	int		fd;
 	char	*content;
-	char	buffer[1024];
-	ssize_t	bytes_read;
+	char	*line;
 	char	*temp;
 
 	fd = open(filename, O_RDONLY);
@@ -66,16 +65,16 @@ char	*read_file_content(const char *filename)
 	content = ft_strdup("");
 	if (!content)
 		error_exit("Memory allocation failed");
-	bytes_read = read(fd, buffer, sizeof(buffer) - 1);
-	while (bytes_read > 0)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(content, buffer);
+		temp = ft_strjoin(content, line);
 		free(content);
+		free(line);
 		if (!temp)
 			error_exit("Memory allocation failed");
 		content = temp;
-		bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (content);
