@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 22:18:29 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 21:19:33 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:18:02 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	load_textures(t_game *game)
 		return (0);
 	return (1);
 }
+
 
 int	init_game(t_game *game, const char *map_file)
 {

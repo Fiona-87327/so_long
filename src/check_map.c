@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 09:48:43 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 16:01:40 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/24 10:09:43 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,34 @@ static int	check_valid_chars(t_map *map)
 			j++;
 		}
 		i++;
+	}
+	return (1);
+}
+
+static int	check_wall(t_map *map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < map->cols)
+	{
+		if (map->grid[0][x] != WALL || map->grid[map->rows - 1][x] != WALL)
+		{
+			error_exit("Map is not surrounded by walls");
+			return (0);
+		}
+		x++;
+	}
+	y = 1;
+	while (y < map->rows - 1)
+	{
+		if (map->grid[y][0] != WALL || map->grid[y][map->cols - 1] != WALL)
+		{
+			error_exit("Map is not surrounded by walls");
+			return (0);
+		}
+		y++;
 	}
 	return (1);
 }
@@ -78,6 +106,8 @@ static int	check_map_if_rectangle(t_map *map)
 int	validate_map(t_map *map)
 {
 	if (!check_valid_chars(map))
+		return (0);
+	if (!check_wall(map))
 		return (0);
 	if (!check_map_if_rectangle(map))
 		return (0);
