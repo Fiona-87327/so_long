@@ -8,6 +8,7 @@ MLX42_FLAGS = -ldl -lglfw -pthread -lm
 
 LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
+OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I./include -I$(MLX42_DIR)/include -I$(LIBFT_DIR)
 
