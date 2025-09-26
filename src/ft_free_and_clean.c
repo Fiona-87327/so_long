@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:29:45 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/26 14:30:40 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 20:26:35 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	cleanup_game(t_game *game)
 	if (game->mlx)
 	{
 		mlx_terminate(game->mlx);
-		free(game->mlx);
+		// free(game->mlx);
 		game->mlx = NULL;
 	}
 }
