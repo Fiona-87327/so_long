@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:55:19 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/25 16:25:26 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:09:54 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char			*read_file_content(const char *filename);
 void			count_map_elements(t_map *map);
 void			dfs(t_map *map, int x, int y, int **visited);
 int				check_path(t_map *map);
+int				check_valid_chars(t_map *map);
 int				validate_file_extension(const char *filename);
 
 #endif

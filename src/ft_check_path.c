@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_path.c                                       :+:      :+:    :+:   */
+/*   ft_check_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:28:25 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 21:19:27 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:38:46 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,26 @@ void	dfs(t_map *map, int x, int y, int **visited)
 
 static int	is_path_valid(t_map *map, int **visited)
 {
-	int	collect_found;
-	int	exit_found;
 	int	y;
 	int	x;
 
-	collect_found = 0;
-	exit_found = 0;
 	y = 0;
 	while (y < map->rows)
 	{
 		x = 0;
 		while (x < map->cols)
 		{
-			if (map->grid[y][x] == COLLECTIBLE && visited[y][x])
-				collect_found++;
-			if (map->grid[y][x] == EXIT && visited[y][x])
-				exit_found = 1;
+			if ((map->grid[y][x] == COLLECTIBLE || map->grid[y][x] == EXIT)
+				&& !visited[y][x])
+			{
+				ft_printf("Error: There is no path.\n");
+				return (0);
+			}
 			x++;
 		}
 		y++;
 	}
-	return (collect_found == map->n_collect && exit_found);
+	return (1);
 }
 
 static void	find_player_position(t_map *map, int *player_x, int *player_y)
@@ -101,7 +99,7 @@ int	check_path(t_map *map)
 	i = 0;
 	while (i < map->rows)
 	{
-		visited[i] = malloc(sizeof(int) * map->cols);
+		visited[i] = ft_calloc(map->cols, sizeof(int));
 		if (!visited[i])
 			return (ft_free_visited(visited, i), 0);
 		ft_memset(visited[i], 0, sizeof(int) * map->cols);

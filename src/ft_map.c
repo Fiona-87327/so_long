@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 22:19:03 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 21:19:43 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:37:54 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ static t_map	*init_map_structure(char *content)
 	if (!map)
 	{
 		free(content);
-		error_exit("Memory allocation failed");
 		return (NULL);
 	}
+	map->grid = NULL;
+	map->rows = 0;
+	map->cols = 0;
+	map->n_player = 0;
+	map->n_exit = 0;
+	map->n_collect = 0;
 	lines = ft_split(content, '\n');
 	free(content);
 	if (!lines)
 	{
 		free(map);
-		error_exit("Failed to split map lines");
+		exit(EXIT_FAILURE);
 		return (NULL);
 	}
 	map->grid = lines;
@@ -45,7 +50,7 @@ static int	set_map_dimensions(t_map *map)
 	{
 		free(map->grid);
 		free(map);
-		error_exit("Empty map file");
+		exit(EXIT_FAILURE);
 		return (0);
 	}
 	map->cols = ft_strlen(map->grid[0]);
@@ -61,10 +66,10 @@ char	*read_file_content(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		error_exit("Failed to open map file");
+		return (NULL);
 	content = ft_strdup("");
 	if (!content)
-		error_exit("Memory allocation failed");
+		return (NULL);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -72,7 +77,7 @@ char	*read_file_content(const char *filename)
 		free(content);
 		free(line);
 		if (!temp)
-			error_exit("Memory allocation failed");
+			return (NULL);
 		content = temp;
 		line = get_next_line(fd);
 	}

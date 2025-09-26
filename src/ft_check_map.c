@@ -6,34 +6,35 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 09:48:43 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/25 16:26:02 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:42:14 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_valid_chars(t_map *map)
+int	check_valid_chars(t_map *map)
 {
-	int		i;
-	int		j;
 	char	c;
+	int		y;
+	int		x;
 
-	i = 0;
-	while (i < map->rows)
+	y = 0;
+	while (y < map->rows)
 	{
-		j = 0;
-		while (j < map->cols)
+		x = 0;
+		while (x < map->cols)
 		{
-			c = map->grid[i][j];
-			if (c != WALL && c != FLOOR && c != PLAYER && c != COLLECTIBLE
-				&& c != EXIT)
+			c = map->grid[y][x];
+			if (c == '\n' || c == '\t' || c == '\r')
 			{
-				error_exit("Invalid character in map");
+				ft_printf("Error\nMap contains invalid character!\n");
+				free_map(map);
+				exit(EXIT_FAILURE);
 				return (0);
 			}
-			j++;
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (1);
 }

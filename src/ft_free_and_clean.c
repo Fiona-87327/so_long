@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_clean.c                                   :+:      :+:    :+:   */
+/*   ft_free_and_clean.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 11:29:45 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/23 21:19:02 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 13:37:40 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,28 @@ void	free_map(t_map *map)
 	free(map);
 }
 
+static void	free_mlx(t_game *game)
+{
+	if (game->mlx)
+	{
+		if (game->img_wall)
+			mlx_delete_image(game->mlx, game->img_wall);
+		if (game->img_floor)
+			mlx_delete_image(game->mlx, game->img_floor);
+		if (game->img_player_r)
+			mlx_delete_image(game->mlx, game->img_player_r);
+		if (game->img_player_l)
+			mlx_delete_image(game->mlx, game->img_player_l);
+		if (game->img_collect)
+			mlx_delete_image(game->mlx, game->img_collect);
+		if (game->img_exit)
+			mlx_delete_image(game->mlx, game->img_exit);
+	}
+}
+
 void	cleanup_game(t_game *game)
 {
+	free_mlx(game);
 	if (game->map)
 		free_map(game->map);
 	if (game->mlx)
@@ -41,11 +61,8 @@ void	cleanup_game(t_game *game)
 
 void	error_exit(const char *msg)
 {
-	if (msg)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd((char *)msg, 2);
-		ft_putstr_fd("\n", 2);
-	}
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd((char *)msg, 2);
+	ft_putstr_fd("\n", 2);
 	exit(EXIT_FAILURE);
 }
