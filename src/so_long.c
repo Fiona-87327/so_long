@@ -6,7 +6,7 @@
 /*   By: jiyawang <jiyawang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 13:27:44 by jiyawang          #+#    #+#             */
-/*   Updated: 2025/09/26 13:43:02 by jiyawang         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:57:50 by jiyawang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 // int	validate_file_extension(const char *filename)
 // {
 // 	const char	*extension;
-// 	int			len;
+// 	int			ext_len;
+// 	int			filename_len;
 
-// 	len = ft_strlen(filename);
-// 	if (len < 4)
+// 	extension = ".ber";
+// 	filename_len = ft_strlen(filename);
+// 	ext_len = ft_strlen(extension);
+// 	if (filename_len < ext_len)
 // 	{
-// 		ft_printf("Map file must have .ber extension");
-// 		return (1);
-// 	}
-// 	extension = filename + (len - 4);
-// 	if (ft_strncmp(extension, ".ber", 4) != 0)
-// 	{
-// 		ft_printf("Map file must have .ber extension");
+// 		ft_printf("Error\nInvalid file extension! Use .ber\n");
 // 		return (1);
 // 	}
 // 	return (0);
@@ -45,13 +42,13 @@ int	main(int argc, char **argv)
 	// 	return (1);
 	game = malloc(sizeof(t_game));
 	if (!game)
-	{
 		return (1);
-	}
 	ft_bzero(game, sizeof(t_game));
 	if (!init_game(game, argv[1]))
 	{
 		cleanup_game(game);
+		ft_printf("Error\nFailed to initialize game!\n");
+		free(game);
 		return (1);
 	}
 	mlx_loop(game->mlx);
